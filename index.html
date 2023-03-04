@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chartjs-plugin-a11y-legend</title>
+    <style>
+      :root{
+        --tile-size: 400px;
+      }
+      #app {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), 1fr));
+      }
+      #app > div:has(canvas) {
+        max-width: var(--tile-size);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/samples/main.ts"></script>
+  </body>
+</html>
