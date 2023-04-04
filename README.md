@@ -29,4 +29,4 @@ This UX is modeled after W3C's WAI-ARIA authoring practices guide for [tabs](htt
 
 ## Example
 
-<iframe id="cp_embed_ZEMyLVZ" src="//codepen.io/anon/embed/ZEMyLVZ?slug-hash=ZEMyLVZ&amp;default-tab=result" height="600" frameborder="0" allowfullscreen="" allowpaymentrequest="" name="CodePen Embed ZEMyLVZ" title="chartjs-plugin-a11y-legend" class="cp_embed_iframe" style="width: 100%; overflow: hidden;">CodePen Embed Fallback</iframe>
+Check out [this CodePen](https://codepen.io/chart2music/pen/ZEMyLVZ) to see how the plugin works with all of chart.js's built-in chart types.
