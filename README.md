@@ -1,7 +1,6 @@
 # chartjs-plugin-a11y-legend
-Provide keyboard navigation for the legends in a chart.js chart
 
-**This is a beta release of this plugin**
+[NPM](https://www.npmjs.com/package/chartjs-plugin-a11y-legend)
 
 Provide keyboard accessibility to the legends of your chart.js charts. When this plugin is activated, a user can press the TAB key to navigate to the legend. Once focused on a legend item, the user presses the left/right arrow keys to navigate between legend items. Then, they can press spacebar or enter to "click" the item.
 
@@ -78,3 +77,15 @@ Chart types supported:
 ## Screen reader support
 
 This plugin is tested with Windows + Chrome + NVDA. If you find issues with this plugin and any screen reader + browser combination, please [open an issue](https://github.com/julianna-langston/chartjs-plugin-a11y-legend/issues).
+
+## How does it work for end-users?
+
+The legend is added to the "tab order", meaning that when users press the TAB key to navigate a website, they'll be able to "tab" to the legends in your charts. They'll tab to the first item in the legend, and then they can press the left/right arrow keys to navigate between individual items in the legend. Users can also "click" the legend items by pressing enter or spacebar.
+
+## How did we come up with this UX?
+
+This UX is modeled after W3C's WAI-ARIA authoring practices guide for [tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) and [toolbars](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/).
+
+## Example
+
+Check out [this CodePen](https://codepen.io/chart2music/pen/ZEMyLVZ) to see how the plugin works with all of chart.js's built-in chart types.
