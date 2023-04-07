@@ -76,13 +76,13 @@ class ChartLegendManager {
                     const isVisible = this.chart.getDataVisibility(index);
                     focusBox.setAttribute("aria-selected", String(isVisible));
                 }else{
-                    const metas = this.chart.getSortedVisibleDatasetMetas();
-                    const visibleLabels = metas.map(({label}) => label);
-    
-                    const isVisible = visibleLabels.includes(this.hitBoxes[index].text);
-    
-                    this.chart.setDatasetVisibility(index, !isVisible);
-                    focusBox.setAttribute("aria-selected", String(!isVisible));
+                    if(this.chart.isDatasetVisible(index)){
+                        this.chart.hide(index);
+                        focusBox.setAttribute("aria-selected", "false");
+                    }else{
+                        this.chart.show(index);
+                        focusBox.setAttribute("aria-selected", "true");
+                    }
                 }
                 this.chart.update();
                 e.preventDefault();
