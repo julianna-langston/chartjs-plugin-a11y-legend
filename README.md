@@ -37,7 +37,7 @@ new Chart(canvasElement, {
 ## Available options
 
 The following pluing options are available:
-* `padding` - (pixels) Add some padding to the bounding box that will appear around your legend items. Default: `4`.
+* `margin` - (pixels) Add some margin to the bounding box that will appear around your legend items. Default: `4`.
 
 Here's an example for adding your own options:
 ```js
@@ -53,8 +53,8 @@ new Chart(canvasElement, {
     },
     options: {
         plugins: {
-            "chartjs-plugin-a11y-legend": {
-                padding: 0
+            a11y_legend: {
+                margin: 0
             }
         }
     },
