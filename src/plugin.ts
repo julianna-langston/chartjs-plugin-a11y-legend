@@ -1,5 +1,7 @@
 import type { Plugin, Chart } from "chart.js";
 
+const chartStates = new Map();
+
 type HitBoxMeta = {
     left: number;
     top: number;
@@ -117,14 +119,14 @@ class ChartLegendManager {
     }
 }
 
-const updateForLegends = (chart: Chart) => {
+const updateForLegends = (chart: Chart, manager: ChartLegendManager) => {
     const {legend} = chart;
         
     if(!legend?.legendItems){
-        return chart.options.a11y_legend.suppressFocusBox();
+        return manager.suppressFocusBox();
     }
 
-    chart.options.a11y_legend.hitBoxes = legend?.legendItems?.map(({text}, index) => {
+    manager.hitBoxes = legend?.legendItems?.map(({text}, index) => {
         return {
             // @ts-ignore
             ...(legend.legendHitBoxes?.[index] ?? {}),
@@ -139,19 +141,24 @@ const plugin: Plugin = {
     id: "a11y_legend",
 
     afterInit: (chart: Chart, args, options) => {
-        chart.options.a11y_legend = new ChartLegendManager(chart, options.margin);
-        updateForLegends(chart);
+        const manager = new ChartLegendManager(chart, options.margin);
+        chartStates.set(chart, manager);
+        updateForLegends(chart, manager);
     },
 
     beforeDraw: (chart, args, options) => {
+        const manager = chartStates.get(chart);
         if(!chart.options.plugins?.legend?.display){
-            return chart.options.a11y_legend.suppressFocusBox();
+            return manager.suppressFocusBox();
         }
-        chart.options.a11y_legend.reviveFocusBox();
-        chart.options.a11y_legend.focusBoxMargin = options.margin;
-        updateForLegends(chart);
+        manager.reviveFocusBox();
+        manager.focusBoxMargin = options.margin;
+        updateForLegends(chart, manager);
     },
 
+    afterDestroy(chart: Chart) {
+      chartStates.delete(chart);
+    },
 
     defaults: {
         margin: 4
