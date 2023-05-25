@@ -8,7 +8,7 @@
       :root{
         --tile-size: 400px;
       }
-      #app {
+      #app, #react-root > div {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), 1fr));
       }
@@ -18,7 +18,13 @@
     </style>
   </head>
   <body>
+    <h1>chartjs-plugin-a11y-legend</h1>
+
+    <h2>Vanilla chart.js</h2>
     <div id="app"></div>
-    <script type="module" src="/samples/main.ts"></script>
+
+    <h2>react-chartjs-2</h2>
+    <div id="react-root"></div>
+    <script type="module" src="/samples/main.tsx"></script>
   </body>
 </html>
