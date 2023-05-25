@@ -166,7 +166,6 @@ const plugin: Plugin = {
     },
 
     afterDestroy(chart: Chart) {
-        console.log("afterDestroy", chart.options.plugins?.title?.text);
         chartStates.delete(chart);
     },
 
