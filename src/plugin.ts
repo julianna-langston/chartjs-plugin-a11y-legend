@@ -48,6 +48,27 @@ class ChartLegendManager {
         const hideFocusBox = () => {
             focusBox.style.left = "-1000px";
         }
+
+        const activateFocusBox = (e: KeyboardEvent | MouseEvent) => {
+            const index = Number(focusBox.getAttribute("data-legend-index"));
+            if(["pie", "doughnut"].includes(this.chart.config.type)){
+                this.chart.toggleDataVisibility(index);
+                const isVisible = this.chart.getDataVisibility(index);
+                focusBox.setAttribute("aria-selected", String(isVisible));
+            }else{
+                if(this.chart.isDatasetVisible(index)){
+                    this.chart.hide(index);
+                    focusBox.setAttribute("aria-selected", "false");
+                }else{
+                    this.chart.show(index);
+                    focusBox.setAttribute("aria-selected", "true");
+                }
+            }
+            this.chart.update();
+            e.preventDefault();
+            e.stopPropagation();
+
+        }
         
         const keyboardNavigation = (e: KeyboardEvent) => {
             const index = Number(focusBox.getAttribute("data-legend-index"));
@@ -73,22 +94,7 @@ class ChartLegendManager {
                 return;
             }
             if(e.key === " " || e.key === "Enter"){
-                if(["pie", "doughnut"].includes(this.chart.config.type)){
-                    this.chart.toggleDataVisibility(index);
-                    const isVisible = this.chart.getDataVisibility(index);
-                    focusBox.setAttribute("aria-selected", String(isVisible));
-                }else{
-                    if(this.chart.isDatasetVisible(index)){
-                        this.chart.hide(index);
-                        focusBox.setAttribute("aria-selected", "false");
-                    }else{
-                        this.chart.show(index);
-                        focusBox.setAttribute("aria-selected", "true");
-                    }
-                }
-                this.chart.update();
-                e.preventDefault();
-                e.stopPropagation();
+                activateFocusBox(e);
                 return;
             }
         }
@@ -114,6 +120,7 @@ class ChartLegendManager {
         focusBox.addEventListener("focus", moveFocusBox);
         focusBox.addEventListener("blur", hideFocusBox);
         focusBox.addEventListener("keydown", keyboardNavigation);
+        focusBox.addEventListener("click", activateFocusBox);
 
         return focusBox;
     }
