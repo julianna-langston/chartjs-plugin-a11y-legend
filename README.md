@@ -62,6 +62,44 @@ new Chart(canvasElement, {
 });
 ```
 
+## Using react-chartjs-2
+
+The plugin will also work with [react-chartjs-2](https://www.npmjs.com/package/react-chartjs-2).
+
+```jsx
+import React from "react";
+import {Chart, registerables} from "chart.js";
+import {Bar} from "react-chartjs-2";
+import a11yLegend from "chartjs-plugin-a11y-legend";
+
+// Register what you want for chart.js
+Chart.register(...registerables);e
+
+// Register the a11y legend plugin, so that it can apply to every chart
+Chart.register(a11yLegend);
+
+// Here's a sample chart using react-chartjs-2
+export default function App(){
+    return <>
+        <Bar 
+            data={{
+                labels: ["A","B","C","D"],
+                datasets: [
+                    {
+                        label: "Green",
+                        data: [9,3,5,1]
+                    },
+                    {
+                        label: "Red",
+                        data: [5,6,2,8]
+                    }
+                ]
+            }}
+        />
+    </>
+}
+```
+
 ## Supported features
 
 This plugin is currently in beta, so not all of the chart.js features are currently supported.
