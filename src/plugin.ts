@@ -133,7 +133,12 @@ const updateForLegends = (chart: Chart, manager: ChartLegendManager) => {
             text
         }
     }) ?? [];
-    
+}
+
+const initialize = (chart: Chart, margin: number) => {
+    const manager = new ChartLegendManager(chart, margin);
+    chartStates.set(chart, manager);
+    return manager;
 }
 
 
@@ -141,13 +146,17 @@ const plugin: Plugin = {
     id: "a11y_legend",
 
     afterInit: (chart: Chart, args, options) => {
-        const manager = new ChartLegendManager(chart, options.margin);
-        chartStates.set(chart, manager);
+        const manager = initialize(chart, options.margin);
         updateForLegends(chart, manager);
     },
 
     beforeDraw: (chart, args, options) => {
-        const manager = chartStates.get(chart);
+        let manager = chartStates.get(chart);
+        
+        if(manager === undefined){
+            manager = initialize(chart, options.margin);
+        }
+
         if(!chart.options.plugins?.legend?.display){
             return manager.suppressFocusBox();
         }
@@ -157,7 +166,7 @@ const plugin: Plugin = {
     },
 
     afterDestroy(chart: Chart) {
-      chartStates.delete(chart);
+        chartStates.delete(chart);
     },
 
     defaults: {

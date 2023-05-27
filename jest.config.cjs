@@ -1,13 +1,13 @@
 /** @type {import('jest').Config} */
 module.exports = {
-    moduleFileExtensions: ["js", "ts"],
+    moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
     fakeTimers: {
         enableGlobally: true
     },
     // setupFiles: ["<rootDir>/test/_setup.ts"],
     preset: "ts-jest/presets/default-esm",
     transform: {
-        "^.+\\.ts?$": ["ts-jest", {
+        "^.+\\.tsx?$": ["ts-jest", {
             useESM: true,
             isolatedModules: true
         }]
@@ -15,7 +15,7 @@ module.exports = {
     transformIgnorePatterns: [
         "node_modules/!(chart\.js)/*"
     ],
-    testRegex: ".+\\.test\\.ts?$",
+    testRegex: ".+\\.test\\.tsx?$",
     testEnvironment: "jsdom",
     collectCoverageFrom: [
         "src/plugin.ts"
