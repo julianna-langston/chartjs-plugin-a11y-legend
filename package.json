@@ -55,5 +55,8 @@
     },
     "dependencies": {
         "chart.js": "^4.2.1"
+    },
+    "resolutions": {
+        "semver": "^7.5.2"
     }
 }
