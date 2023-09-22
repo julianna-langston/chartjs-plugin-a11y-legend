@@ -105,11 +105,15 @@ class ChartLegendManager {
                 return;
             }
 
+            const useOffset = this.canvas.offsetParent !== null && !["BODY", "HTML"].includes(this.canvas.offsetParent.nodeName);
+
             const bbox = this.canvas.getBoundingClientRect();
+            const adjustment = useOffset ? (this.canvas.offsetParent as HTMLElement).getBoundingClientRect() : {x: 0 - window.scrollX, y: 0 - window.scrollY};
+
             const {left, top, width, height, text} = this.hitBoxes[index];
 
-            focusBox.style.left = `${bbox.x + left - this.focusBoxMargin - window.pageXOffset}px`;
-            focusBox.style.top = `${bbox.y + top - this.focusBoxMargin + window.pageYOffset}px`;
+            focusBox.style.left = `${bbox.x - adjustment.x + left - this.focusBoxMargin}px`;
+            focusBox.style.top = `${bbox.y - adjustment.y + top - this.focusBoxMargin}px`;
             focusBox.style.width = `${width + (2*this.focusBoxMargin)}px`;
             focusBox.style.height = `${height + (2*this.focusBoxMargin)}px`;
             focusBox.setAttribute("aria-label", `${text}, ${index+1} of ${this.hitBoxes.length}`);
