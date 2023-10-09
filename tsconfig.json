@@ -14,7 +14,9 @@
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "skipLibCheck": true,
-      "jsx": "react"
+      "jsx": "react",
+      "declaration": true,
+      "declarationDir": "."
     },
     "files": ["src/plugin.ts"]
   }
