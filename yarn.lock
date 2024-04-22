@@ -6063,11 +6063,11 @@ __metadata:
 
 "typescript@patch:typescript@5.4.4#~builtin<compat/typescript>":
   version: 5.4.4
-  resolution: "typescript@patch:typescript@npm%3A5.4.4#~builtin<compat/typescript>::version=5.4.4&hash=e012d7"
+  resolution: "typescript@patch:typescript@npm%3A5.4.4#~builtin<compat/typescript>::version=5.4.4&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 34e8fe6b892736204c6c72ae9e3027fb37f23e34cf748340712101cbe9c55527c379c4d275c407e5c66ff73eca56c7425b1fb4ac5b23dc7a62413cf6a8af98e8
+  checksum: f64e07e11f787a18b5b98cbe7506465a5a92f56bbd4691977cc9c690f4ec49ebce51dfac77728dc792b743f8d89e8d99004370f5c96f7f56947c25c3f90f9350
   languageName: node
   linkType: hard
 
@@ -6139,8 +6139,8 @@ __metadata:
   linkType: hard
 
 "vite@npm:^5.0.5":
-  version: 5.2.8
-  resolution: "vite@npm:5.2.8"
+  version: 5.2.10
+  resolution: "vite@npm:5.2.10"
   dependencies:
     esbuild: ^0.20.1
     fsevents: ~2.3.3
@@ -6174,7 +6174,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: c0a77271b548fce443af59a383939924ffcba8e6d0ba6ecb2e481d0ec2318465d2116ce9317599c448e6d6d8af11a67b8efc5b52cb1deab37d2e83311ac4f1b5
+  checksum: feb11be2b97259783afe1d0ff4b7ee0bef78fe8934d8b043465e039e4d8318249e2263adc724b719b9e9b45a37e012caeb7746854768f371d1a82bb189f50fe6
   languageName: node
   linkType: hard
 
