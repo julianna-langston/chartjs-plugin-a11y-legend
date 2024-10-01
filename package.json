@@ -38,7 +38,8 @@
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.0.0",
-        "@testing-library/react": "^15.0.2",
+        "@testing-library/dom": "^10.1.0",
+        "@testing-library/react": "^16.0.0",
         "@types/jest": "^29.4.0",
         "canvas": "^2.11.0",
         "cross-env": "^7.0.3",
@@ -50,7 +51,7 @@
         "react-dom": "^18.2.0",
         "rimraf": "^6.0.1",
         "rollup": "^4.1.4",
-        "ts-jest": "29.2.2",
+        "ts-jest": "29.2.3",
         "tslib": "2.6.3",
         "typescript": "5.5.3",
         "vite": "^5.0.5"
