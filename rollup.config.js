@@ -23,5 +23,15 @@ export default [
             }
         ],
         plugins: [typescript({tsconfig: "./tsconfig.json"})]
+    },
+    {
+        input: "src/plugin.ts",
+        output: [
+            {
+                file: "dist/plugin.amd.js",
+                format: "amd"
+            }
+        ],
+        plugins: [typescript({tsconfig: "./tsconfig.json"})]
     }
 ]
