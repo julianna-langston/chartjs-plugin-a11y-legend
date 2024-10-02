@@ -37,7 +37,7 @@
         "clean": "rimraf dist coverage"
     },
     "devDependencies": {
-        "@rollup/plugin-typescript": "^11.0.0",
+        "@rollup/plugin-typescript": "^12.1.0",
         "@testing-library/dom": "^10.1.0",
         "@testing-library/react": "^16.0.0",
         "@types/jest": "^29.4.0",
