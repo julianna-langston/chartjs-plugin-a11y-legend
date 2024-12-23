@@ -41,7 +41,7 @@
         "@testing-library/dom": "^10.1.0",
         "@testing-library/react": "^16.0.0",
         "@types/jest": "^29.4.0",
-        "canvas": "^2.11.0",
+        "canvas": "^3.0.0",
         "cross-env": "^7.0.3",
         "depcheck": "^1.4.3",
         "jest": "^29.4.3",
