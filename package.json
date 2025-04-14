@@ -1,6 +1,6 @@
 {
     "name": "chartjs-plugin-a11y-legend",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "type": "module",
     "description": "Chart.js plugin to provide keyboard navigation to legends",
     "main": "dist/plugin.js",
