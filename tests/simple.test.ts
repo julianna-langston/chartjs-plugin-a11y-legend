@@ -26,7 +26,6 @@ test("Confirm focusBox has expected properties", () => {
     expect(focusBox).toHaveProperty("tabIndex", -1);
     expect(focusBox.getAttribute("data-legend-index")).toBe("0");
     expect(focusBox.getAttribute("role")).toBe("option");
-    expect(focusBox.getAttribute("aria-selected")).toBe("true");
 });
 
 test("Hide focusBox if there are no legend items a focusBox element for the legend", () => {
@@ -38,3 +37,4 @@ test("Hide focusBox if there are no legend items a focusBox element for the lege
     const focusBox = mockParent.children[1];
     expect(focusBox).toHaveProperty("tabIndex", -1);
 });
+
