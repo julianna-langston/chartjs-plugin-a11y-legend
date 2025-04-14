@@ -8,6 +8,7 @@ type HitBoxMeta = {
     width: number;
     height: number;
     text: string;
+    hidden: boolean;
 }
 
 class ChartLegendManager {
@@ -42,7 +43,6 @@ class ChartLegendManager {
         focusBox.setAttribute("tabIndex", "0");
         focusBox.setAttribute("data-legend-index", "0");
         focusBox.setAttribute("role", "option");
-        focusBox.setAttribute("aria-selected", "true");
         focusBox.style.position = "absolute";
         
         const hideFocusBox = () => {
@@ -54,14 +54,14 @@ class ChartLegendManager {
             if(["pie", "doughnut"].includes(this.chart.config.type)){
                 this.chart.toggleDataVisibility(index);
                 const isVisible = this.chart.getDataVisibility(index);
-                focusBox.setAttribute("aria-selected", String(isVisible));
+                focusBox.setAttribute("aria-label", isVisible ? "Selected" : "Not selected");
             }else{
                 if(this.chart.isDatasetVisible(index)){
                     this.chart.hide(index);
-                    focusBox.setAttribute("aria-selected", "false");
+                    focusBox.setAttribute("aria-label", "Not selected");
                 }else{
                     this.chart.show(index);
-                    focusBox.setAttribute("aria-selected", "true");
+                    focusBox.setAttribute("aria-label", "Selected");
                 }
             }
             this.chart.update();
@@ -110,13 +110,13 @@ class ChartLegendManager {
             const bbox = this.canvas.getBoundingClientRect();
             const adjustment = useOffset ? (this.canvas.offsetParent as HTMLElement).getBoundingClientRect() : {x: 0 - window.scrollX, y: 0 - window.scrollY};
 
-            const {left, top, width, height, text} = this.hitBoxes[index];
+            const {left, top, width, height, text, hidden} = this.hitBoxes[index];
 
             focusBox.style.left = `${bbox.x - adjustment.x + left - this.focusBoxMargin}px`;
             focusBox.style.top = `${bbox.y - adjustment.y + top - this.focusBoxMargin}px`;
             focusBox.style.width = `${width + (2*this.focusBoxMargin)}px`;
             focusBox.style.height = `${height + (2*this.focusBoxMargin)}px`;
-            focusBox.setAttribute("aria-label", `${text}, ${index+1} of ${this.hitBoxes.length}`);
+            focusBox.setAttribute("aria-label", `${text}, ${hidden ? "not selected" : "selected"}, ${index+1} of ${this.hitBoxes.length}`);
         }
 
         hideFocusBox();
@@ -137,11 +137,12 @@ const updateForLegends = (chart: Chart, manager: ChartLegendManager) => {
         return manager.suppressFocusBox();
     }
 
-    manager.hitBoxes = legend?.legendItems?.map(({text}, index) => {
+    manager.hitBoxes = legend?.legendItems?.map(({text, hidden}, index) => {
         return {
             // @ts-ignore
             ...(legend.legendHitBoxes?.[index] ?? {}),
-            text
+            text,
+            hidden
         }
     }) ?? [];
 }
