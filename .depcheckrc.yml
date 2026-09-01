@@ -2,6 +2,7 @@ ignores: [
     "typescript",
 
     # Used as a script in package.json
+    "cross-env", # for yarn test
     "rollup", # for yarn build
     "rimraf", # for yarn clean
 
