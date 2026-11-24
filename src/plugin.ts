@@ -42,7 +42,7 @@ class ChartLegendManager {
         const focusBox = document.createElement("div");
         focusBox.setAttribute("tabIndex", "0");
         focusBox.setAttribute("data-legend-index", "0");
-        focusBox.setAttribute("role", "option");
+        focusBox.setAttribute("role", "switch");
         focusBox.style.position = "absolute";
         
         const hideFocusBox = () => {
@@ -55,13 +55,16 @@ class ChartLegendManager {
                 this.chart.toggleDataVisibility(index);
                 const isVisible = this.chart.getDataVisibility(index);
                 focusBox.setAttribute("aria-label", isVisible ? "Selected" : "Not selected");
+                focusBox.setAttribute("aria-checked", isVisible);
             }else{
                 if(this.chart.isDatasetVisible(index)){
                     this.chart.hide(index);
                     focusBox.setAttribute("aria-label", "Not selected");
+                    focusBox.setAttribute("aria-checked", false);
                 }else{
                     this.chart.show(index);
                     focusBox.setAttribute("aria-label", "Selected");
+                    focusBox.setAttribute("aria-checked", true);
                 }
             }
             this.chart.update();
@@ -117,6 +120,8 @@ class ChartLegendManager {
             focusBox.style.width = `${width + (2*this.focusBoxMargin)}px`;
             focusBox.style.height = `${height + (2*this.focusBoxMargin)}px`;
             focusBox.setAttribute("aria-label", `${text}, ${hidden ? "not selected" : "selected"}, ${index+1} of ${this.hitBoxes.length}`);
+            focusBox.setAttribute("aria-checked", !hidden);
+            
         }
 
         hideFocusBox();

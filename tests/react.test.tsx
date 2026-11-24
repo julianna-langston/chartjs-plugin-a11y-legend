@@ -13,5 +13,5 @@ test("Confirm focusBox has expected properties", () => {
     const focusBox = container.querySelector("canvas + div");
     expect(focusBox).toHaveProperty("tabIndex", -1);
     expect(focusBox?.getAttribute("data-legend-index")).toBe("0");
-    expect(focusBox?.getAttribute("role")).toBe("option");
+    expect(focusBox?.getAttribute("role")).toBe("switch");
 });

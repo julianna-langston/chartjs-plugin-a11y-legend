@@ -25,7 +25,7 @@ test("Confirm focusBox has expected properties", () => {
     const focusBox = mockParent.children[1];
     expect(focusBox).toHaveProperty("tabIndex", -1);
     expect(focusBox.getAttribute("data-legend-index")).toBe("0");
-    expect(focusBox.getAttribute("role")).toBe("option");
+    expect(focusBox.getAttribute("role")).toBe("switch");
 });
 
 test("Hide focusBox if there are no legend items a focusBox element for the legend", () => {
